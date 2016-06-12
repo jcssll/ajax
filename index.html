@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Professions</title>
+</head>
+<body>
+<!--1.ENTER YOUR JS CDN -->
+<button id="doctorButton">Doctor</button>
+
+<button id="attorneyButton">attorney</button>
+
+<button id="engineerButton">engineer</button>
+
+<button id="compEngineerButton">Computer Engineer</button>
+
+<button id="brokerButton">Broker</button>
+
+<button id="civilServiceButton">Civil Service</button>
+
+<button id="farmerButton">Farmer</button>
+
+<button id="politicianButton">Politician</button>
+
+<button id="scientistButton">Scientist</button>
+
+<button id="personalTrainerButton">Personal Trainer</button>
+
+<button id="mixologistButton">Mixologist</button> 
+
+<div id="images"></div>
+
+ <form id="profession-form">
+    <label for="profession-input">Add a Profession</label>
+    <input type="text" id="profession-input"><br>
+    
+    <!-- Button triggers new profession to be added -->
+    <input id="addProfession" type="submit" value="Add a Profession">
+  </form>
+
+ <script src='http://code.jquery.com/jquery-2.1.3.min.js'></script>
+<script type="text/javascript">
+
+	var profession = ['doctor', 'attorney', 'engineer', 'Computer Engineer', 'broker','Civil Service', 'farmer', 'politician', 'scientist', 'personal trainer', 'mixologist'];
+
+	for(var i=0; i < profession.length; i++){
+		var b = $("<button>").html(profession[i]);
+		console.log('button.text')
+
+//pull buttons using jquery 
+//The public beta key is "dc6zaTOxFJmzC”
+$('button').on('click', function() {
+	var queryURL= 'http://api.giphy.com/v1/gifs/search?q=doctor&api_key=dc6zaTOxFJmzC'
+	//search endpoint
+	 $('.doctorButton').removeClass('active');
+    $(this).addClass('active');
+    var p = $(this).data('profession');
+
+	// now let's get your data using ajax:get and done
+
+	$.ajax({
+		url:queryURL,
+		method:'GET'})
+
+		.done(function(response) {
+
+			var results= response.data; 
+			for (var i=0; i < results. length; i++ ){
+
+				if (results[i].rating === 'r'|| 
+					results [i].rating == 'pg-13')
+			}
+
+
+		var imageUrl= response.data.image_original_url;
+
+		var doctorImage = $("<img>");
+
+		doctorImage.attr('src', 'imageUrl'); 
+		doctorImage.attr('alt','doctorImage');
+
+		$('#images').prepend(doctorImage);
+
+
+		});
+
+
+});
+
+	
+</script>
+</body>
+</html>
